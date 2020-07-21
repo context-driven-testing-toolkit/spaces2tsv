@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Carp qw(confess);
+
+if ( -t STDIN and not @ARGV ) {
+    confess qq{
+Error: NO INPUT DETECTED!
+    You are supposed to pipe space-delimited input to this script!
+};
+}
+
+while (<>) {
+    s{^ +}{};
+    s{ +}{\t}g;
+    print;
+};
